@@ -16,26 +16,23 @@ export default class App extends React.Component {
 
     return (
 
-      <SafeAreaView style={{flex: 4, backgroundColor: '#abc'}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: '#abc'}}>
 
       <View style={styles.container}>
             
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-
-
+        <Text style={styles.question}>How're you feeling?</Text>
         
       </View>
 
-
-      <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center', width: 300}}>
+      <View style={{flex:1, alignItems: 'center'}}>
+      <View style={styles.slider}>
         <Slider
           maximumValue={5}
           value={this.state.value}
           onValueChange={(value) => this.setState({value})} />
         <Text>Value: {this.state.value}</Text>
 
+      </View>
       </View>
 
 
@@ -46,10 +43,21 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  question: {
+    fontSize: 50,
+    fontWeight: 'bold',
+  },
+
   container: {
     flex: 1,
     backgroundColor: '#cde',
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center',
   },
+  slider: {
+    flex: 1,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    width: 300,
+  }
 });
