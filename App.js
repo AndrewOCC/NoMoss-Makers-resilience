@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView,View , Slider, Image} from 'react-native';
+import Slider from 'react-native-slider';
+import { StyleSheet, Text, SafeAreaView,View , Image, Button} from 'react-native';
 // import { Slider } from 'react-native-elements'
 
 export default class App extends React.Component {
@@ -11,31 +12,46 @@ export default class App extends React.Component {
 
   }
 
+  onPressAdvance() {
+    // Advance to next screen
+  }
+
   render() {
-
-
     return (
 
       <SafeAreaView style={{flex: 1, backgroundColor: '#abc'}}>
 
-      <View style={styles.container}>
-            
-        <Text style={styles.question}>How're you feeling?</Text>
-        
-      </View>
+        <View style={styles.container}>
+              
+          <Text style={styles.question}>How're you feeling?</Text>
+          
+        </View>
 
-      <View style={{flex:1, alignItems: 'center'}}>
-      <View style={styles.slider}>
-        <Slider
-          maximumValue={5}
-          value={this.state.value}
-          onValueChange={(value) => this.setState({value})} />
-        <Text>Value: {this.state.value}</Text>
+        <View style={{flex:1, alignItems: 'center'}}>
+          <View style={styles.sliderContainer}>
+            <Slider
+              maximumValue={5}
+              step={1}
+              value={this.state.value}
+              onValueChange={(value) => this.setState({value})} 
+              
+              trackStyle={sliderStyles.trackStyle}
+              thumbStyle={sliderStyles.thumbStyle}
+              minimumTrackTintColor='#d14ba6'
+              />
+            <Text>Value: {this.state.value}</Text>
 
-      </View>
-      </View>
+          </View>
+        </View>
 
-
+        <View style={{flex:1, alignItems: 'center'}}>
+          <Button
+            onPress={this.onPressAdvance}
+            title="Next Question"
+            color="#000000"
+            accessibilityLabel="Complete question and advance"
+          />
+        </View>
       </SafeAreaView>
 
     );
@@ -54,10 +70,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  slider: {
+  sliderContainer: {
     flex: 1,
     alignItems: 'stretch',
     justifyContent: 'center',
     width: 300,
   }
 });
+
+const sliderStyles = StyleSheet.create({
+  track: {
+    height: 20,
+    borderRadius: 5,
+    backgroundColor: '#d0d0d0',
+  },
+  thumb: {
+    width: 20,
+    height: 30,
+    borderRadius: 5,
+    backgroundColor: '#eb6e1b',
+  }
+});
+
+
