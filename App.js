@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView,View , Slider, Image} from 'react-native';
+import { StyleSheet, Text, SafeAreaView,View , Slider, Image, Button} from 'react-native';
 // import { Slider } from 'react-native-elements'
+import { createStackNavigator } from 'react-navigation';
 
-export default class App extends React.Component {
+
+
+
+class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isShowingText: true,
@@ -33,12 +37,53 @@ export default class App extends React.Component {
         <Text>Value: {this.state.value}</Text>
 
       </View>
+
+        <Button
+          title="Done"
+          onPress={() => this.props.navigation.navigate('Details')}
+        />
+   
+
       </View>
+
+
 
 
       </SafeAreaView>
 
     );
+  }
+}
+
+
+class DetailsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+                <Button
+          title="Done"
+          onPress={() => this.props.navigation.navigate('Home')}
+        />
+      </View>
+    );
+  }
+}
+
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Details: DetailsScreen,
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
+
+
+export default class App extends React.Component {
+  render() {
+    return <RootStack />;
   }
 }
 
